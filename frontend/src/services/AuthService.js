@@ -23,7 +23,7 @@ export const LoginUserService = (credentials) => {
     .catch(err => { throw err })
 }
 
-export const AuthorizeUserService = () => {
+export const AuthoriseUserService = () => {
   const http = new HttpService()
   const tokenID = "access-token"
   
