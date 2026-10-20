@@ -6,6 +6,22 @@ set -o nounset
 
 export DJANGO_SUPERUSER_PASSWORD="${DJANGO_SUPERUSER_PASSWORD:-secret}"
 
+python - <<'EOF'
+import os, socket, sys, time
+
+host = os.environ.get("DB_HOST")
+port = int(os.environ.get("DB_PORT") or 3306)
+if host:
+    for _ in range(60):
+        try:
+            socket.create_connection((host, port), timeout=2).close()
+            break
+        except OSError:
+            time.sleep(2)
+    else:
+        sys.exit("MYSQL not reachable")
+EOF
+
 rm -rf static 2>/dev/null || true
 # python manage.py collectstatic --no-input # commented because this makes the server render old static files and so Django will overlook your changes if static/ is present
 # python manage.py makemigrations  # run manually and commit migrations
