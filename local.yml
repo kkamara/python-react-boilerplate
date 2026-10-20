@@ -25,7 +25,7 @@ services:
     image: 'mariadb:10.7'
     restart: unless-stopped
     ports:
-      - '3306:3306'
+      - '${MARIADB_PORT:-3306}:${MARIADB_PORT:-3306}'
     environment:
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-secret}
       MARIADB_DATABASE: ${MARIADB_DATABASE:-python_boilerplate}
@@ -39,8 +39,8 @@ services:
     image: mailhog/mailhog
     restart: unless-stopped
     ports:
-      - 1025:1025
-      - 8025:8025 
+      - '${FORWARD_MAILHOG_PORT:-1025}:1025'
+      - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
     networks:
       - python_boilerplate_app
 
