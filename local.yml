@@ -1,10 +1,11 @@
 services:
   django:
+    container_name: python_boilerplate_local_django
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
     image: python_boilerplate_local_django
-    container_name: python_boilerplate_local_django
+    restart: unless-stopped
     platform: linux/x86_64
     depends_on:
       - mariadb
@@ -22,6 +23,7 @@ services:
   mariadb:
     container_name: python_boilerplate_local_mariadb
     image: 'mariadb:10.7'
+    restart: unless-stopped
     ports:
       - '3306:3306'
     environment:
@@ -34,8 +36,8 @@ services:
 
   mailhog:
     container_name: python_boilerplate_local_mailhog
-    restart: unless-stopped
     image: mailhog/mailhog
+    restart: unless-stopped
     ports:
       - 1025:1025
       - 8025:8025 
