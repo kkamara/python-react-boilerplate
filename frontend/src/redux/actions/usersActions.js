@@ -7,9 +7,9 @@ export const getUsers = page => {
 
     dispatch({ type: users.GET_USERS_PENDING, })
 
-    const accessTokenID = "access-token"
+    const accessTokenId = "access-token"
     const path = page ? "/users/?page="+page : "/users"
-    await http.getData(path, accessTokenID)
+    await http.getData(path, accessTokenId)
       .then(res => {
         dispatch({
           type: users.GET_USERS_SUCCESS,

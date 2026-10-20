@@ -36,11 +36,11 @@ export default class HttpService
     return this._timeout;
   }
 
-  postData = (path, item, tokenID="") => {
+  postData = (path, item, tokenId="") => {
     let requestOptions = this.postRequestOptions({ item, })
     let token
-    if (tokenID.length) {
-      token = localStorage.getItem(tokenID)
+    if (tokenId.length) {
+      token = localStorage.getItem(tokenId)
       requestOptions = this.postRequestOptions({ token, item, })
     }
     let url = this.url+path
@@ -56,11 +56,11 @@ export default class HttpService
     )
   }
 
-  postFormData = (path, item, tokenID="") => {
+  postFormData = (path, item, tokenId="") => {
     let requestOptions = this.postRequestOptions({ item, })
     let token
-    if (tokenID.length) {
-      token = localStorage.getItem(tokenID)
+    if (tokenId.length) {
+      token = localStorage.getItem(tokenId)
       requestOptions = this.postRequestOptions({ token, item, })
     }
     let url = this.url+path
@@ -76,11 +76,11 @@ export default class HttpService
     )
   }
 
-  putData = (path, item, tokenID="") => {
+  putData = (path, item, tokenId="") => {
     let requestOptions = this.putRequestOptions({ item, })
     let token
-    if (tokenID.length) {
-      token = localStorage.getItem(tokenID)
+    if (tokenId.length) {
+      token = localStorage.getItem(tokenId)
       requestOptions = this.putRequestOptions({ token, item, })
     }
     let url = this.url+path
@@ -96,11 +96,11 @@ export default class HttpService
     )
   }
 
-  putFormData = (path, item, tokenID="") => {
+  putFormData = (path, item, tokenId="") => {
     let requestOptions = this.putRequestOptions({ item, })
     let token
-    if (tokenID.length) {
-      token = localStorage.getItem(tokenID)
+    if (tokenId.length) {
+      token = localStorage.getItem(tokenId)
       requestOptions = this.putRequestOptions({ token, item, })
     }
     let url = this.url+path
@@ -116,11 +116,11 @@ export default class HttpService
     )
   }
 
-  patchData = (path, item, tokenID="") => {
+  patchData = (path, item, tokenId="") => {
     let requestOptions = this.patchRequestOptions({ item, })
     let token
-    if (tokenID.length) {
-      token = localStorage.getItem(tokenID)
+    if (tokenId.length) {
+      token = localStorage.getItem(tokenId)
       requestOptions = this.patchRequestOptions({ token, item, })
     }
     let url = this.url+path
@@ -136,11 +136,11 @@ export default class HttpService
     )
   }
 
-  patchFormData = (path, item, tokenID="") => {
+  patchFormData = (path, item, tokenId="") => {
     let requestOptions = this.patchRequestOptions({ item, })
     let token
-    if (tokenID.length) {
-      token = localStorage.getItem(tokenID)
+    if (tokenId.length) {
+      token = localStorage.getItem(tokenId)
       requestOptions = this.patchRequestOptions({ token, item, })
     }
     let url = this.url+path
@@ -156,11 +156,11 @@ export default class HttpService
     )
   }
 
-  getData = (path, tokenID="") => {
+  getData = (path, tokenId="") => {
     let requestOptions = this.getRequestOptions()
     let token
-    if (tokenID.length) {
-      token = localStorage.getItem(tokenID)
+    if (tokenId.length) {
+      token = localStorage.getItem(tokenId)
       requestOptions = this.getRequestOptions(token)
     }
     let url = this.url+path
@@ -175,11 +175,11 @@ export default class HttpService
     )
   }
 
-  delData = (path, tokenID="") => {
+  delData = (path, tokenId="") => {
     let requestOptions = this.delRequestOptions()
     let token
-    if (tokenID.length) {
-      token = localStorage.getItem(tokenID)
+    if (tokenId.length) {
+      token = localStorage.getItem(tokenId)
       requestOptions = this.delRequestOptions(token)
     }
     let url = this.url+path

@@ -7,11 +7,11 @@ export const uploadAvatar = payload => {
 
     dispatch({ type: avatar.UPLOAD_AVATAR_PENDING, })
 
-    const accessTokenID = "access-token"
+    const accessTokenId = "access-token"
     await http.postFormData(
       "/users/avatar",
       payload,
-      accessTokenID,
+      accessTokenId,
     )
       .then(res => {
         dispatch({

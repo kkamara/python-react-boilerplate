@@ -11,13 +11,13 @@ export const RegisterUserService = (data) => {
 
 export const LoginUserService = (credentials) => {
   const http = new HttpService()
-  const accessTokenID = "access-token"
-  const refreshTokenID = "refresh-token"
+  const accessTokenId = "access-token"
+  const refreshTokenId = "refresh-token"
   
   return http.postData("/users/login", credentials)
     .then(response => {
-      localStorage.setItem(accessTokenID, response.data.data.access)
-      localStorage.setItem(refreshTokenID, response.data.data.refresh)
+      localStorage.setItem(accessTokenId, response.data.data.access)
+      localStorage.setItem(refreshTokenId, response.data.data.refresh)
       return response.data
     })
     .catch(err => { throw err })
@@ -25,9 +25,9 @@ export const LoginUserService = (credentials) => {
 
 export const AuthoriseUserService = () => {
   const http = new HttpService()
-  const tokenID = "access-token"
+  const tokenId = "access-token"
   
-  return http.getData("/users/authorise", tokenID)
+  return http.getData("/users/authorise", tokenId)
     .then(response => {
       return response.data
     })
@@ -36,20 +36,20 @@ export const AuthoriseUserService = () => {
 
 export const LogoutUserService = () => {
   const http = new HttpService()
-  const accessTokenID = "access-token"
-  const refreshTokenID = "refresh-token"
-  const refreshToken = localStorage.getItem(refreshTokenID)
+  const accessTokenId = "access-token"
+  const refreshTokenId = "refresh-token"
+  const refreshToken = localStorage.getItem(refreshTokenId)
   return http.postData(
     "/users",
     { refresh: refreshToken },
-    accessTokenID,
+    accessTokenId,
   )
     .then((response) => {
-      if (null !== localStorage.getItem(accessTokenID)) {
-        localStorage.removeItem(accessTokenID)
+      if (null !== localStorage.getItem(accessTokenId)) {
+        localStorage.removeItem(accessTokenId)
       }
-      if (null !== localStorage.getItem(refreshTokenID)) {
-        localStorage.removeItem(refreshTokenID)
+      if (null !== localStorage.getItem(refreshTokenId)) {
+        localStorage.removeItem(refreshTokenId)
       }
       window.location = "/user/login"
       return response.data

@@ -23,20 +23,20 @@ const AuthRoute = ({ redirectPath, }) => {
     return null
   }
 
-  const accessTokenID = "access-token"
-  const refreshTokenID = "refresh-token"
-  const userStorage = localStorage.getItem(accessTokenID)
-  const refreshStorage = localStorage.getItem(refreshTokenID)
+  const accessTokenId = "access-token"
+  const refreshTokenId = "refresh-token"
+  const userStorage = localStorage.getItem(accessTokenId)
+  const refreshStorage = localStorage.getItem(refreshTokenId)
   if (
     state.auth.error ||
     null === userStorage ||
     null === refreshStorage
   ) {
     if (null !== userStorage) {
-      localStorage.removeItem(accessTokenID)
+      localStorage.removeItem(accessTokenId)
     }
     if (null !== refreshStorage) {
-      localStorage.removeItem(refreshTokenID)
+      localStorage.removeItem(refreshTokenId)
     }
     if (redirectPath) {
       return <Navigate to={redirectPath}/>

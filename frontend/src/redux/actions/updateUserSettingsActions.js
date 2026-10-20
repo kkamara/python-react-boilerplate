@@ -7,11 +7,11 @@ export const updateSettings = payload => {
 
     dispatch({ type: updateUserSettings.UPDATE_USER_SETTINGS_PENDING, })
 
-    const accessTokenID = "access-token"
+    const accessTokenId = "access-token"
     await http.patchData(
       "/users",
       payload,
-      accessTokenID,
+      accessTokenId,
     )
       .then(res => {
         dispatch({
