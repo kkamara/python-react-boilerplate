@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 from uuid import uuid4
 
@@ -26,6 +27,7 @@ from .serializers import (
 USER_MODEL = get_user_model()
 ALLOWED_AVATAR_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
 MAX_AVATAR_SIZE = 5 * 1024 * 1024
+logger = logging.getLogger(__name__)
 
 
 class RegisterUserCreateAPIView(generics.CreateAPIView):
@@ -127,6 +129,8 @@ class UserAPIView(APIView):
 
     def get(self, request, *args, **kwargs):
         page = request.query_params.get("page", "1")
+        page = page.removesuffix("/")
+
         try:
             page = int(page)
         except (TypeError, ValueError):
