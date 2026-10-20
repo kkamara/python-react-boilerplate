@@ -162,11 +162,11 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.mysql",
-            "NAME": env("MARIADB_DATABASE"),
-            "USER": env("MARIADB_USER"),
-            "PASSWORD": env("MARIADB_PASSWORD"),
-            "HOST": env("MARIADB_HOST"),
-            "PORT": env("MARIADB_PORT"),
+            "NAME": env("DB_NAME"),
+            "USER": env("DB_USER"),
+            "PASSWORD": env("DB_PASS"),
+            "HOST": env("DB_HOST"),
+            "PORT": env("DB_PORT"),
         }
     }
 

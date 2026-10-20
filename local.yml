@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     platform: linux/x86_64
     depends_on:
-      - mariadb
+      - mysql
       - mailhog
     volumes:
       - .:/app:z
@@ -19,21 +19,24 @@ services:
     command: /start
     networks:
       - python_boilerplate_app
-
-  mariadb:
-    container_name: python_boilerplate_local_mariadb
-    image: 'mariadb:10.7'
+  mysql:
+    container_name: python_boilerplate_local_mysql
+    image: 'mysql:8.0'
     restart: unless-stopped
     ports:
-      - '${MARIADB_PORT:-3306}:${MARIADB_PORT:-3306}'
+      - '${DB_PORT:-3306}:${DB_PORT:-3306}'
     environment:
-      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-secret}
-      MARIADB_DATABASE: ${MARIADB_DATABASE:-python_boilerplate}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - 'localmariadb:/var/lib/mysql'
+      - "mysql:/var/lib/mysql"
     networks:
       - python_boilerplate_app
-
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-p${DB_PASS}"]
   mailhog:
     container_name: python_boilerplate_local_mailhog
     image: mailhog/mailhog
@@ -49,5 +52,5 @@ networks:
     driver: bridge
 
 volumes:
-  localmariadb:
+  mysql:
     driver: local
